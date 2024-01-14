@@ -1,9 +1,10 @@
 package study.querydsl;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ class QuerydslApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 		Hello hello = new Hello();
 		em.persist(hello);
 
@@ -27,8 +29,8 @@ class QuerydslApplicationTests {
 		Hello result = query
 				.selectFrom(qHello)
 				.fetchOne();
-		Assertions.assertThat(result).isEqualTo(hello);
-		Assertions.assertThat(result.getId()).isEqualTo(hello.getId());
+		assertThat(result).isEqualTo(hello);
+		assertThat(result.getId()).isEqualTo(hello.getId());
 	}
 
 }
