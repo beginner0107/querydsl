@@ -55,4 +55,4 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-/src/main/generated/**
+/src/main/generated/
