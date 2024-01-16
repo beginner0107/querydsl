@@ -447,6 +447,7 @@ public class QuerydslBasicTest {
    * 2. 0~20살 회원 출력
    * 3. 21~30살 회원 출력
    */
+  @Test
   public void orderByAndCase() {
     NumberExpression<Integer> rankPath = new CaseBuilder()
         .when(member.age.between(0, 20)).then(2)
