@@ -10,6 +10,8 @@ import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceUnit;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -293,5 +295,22 @@ public class QuerydslBasicTest {
     for (Tuple tuple : result) {
       System.out.println("t=" + tuple);
     }
+  }
+
+  @PersistenceUnit
+  EntityManagerFactory emf;
+
+  @Test
+  public void fetchJoinNo() throws Exception {
+    em.flush();
+    em.clear();
+
+    Member findMember = queryFactory
+        .selectFrom(member)
+        .where(member.username.eq("member1"))
+        .fetchOne();
+
+    boolean loaded = emf.getPersistenceUnitUtil().isLoaded(findMember.getTeam());
+    assertThat(loaded).as("페치 조인 미적용").isFalse();
   }
 }
