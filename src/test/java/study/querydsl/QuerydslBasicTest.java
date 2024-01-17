@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import study.querydsl.dto.MemberDto;
+import study.querydsl.dto.UserDto;
 import study.querydsl.entity.Member;
 import study.querydsl.entity.QMember;
 import study.querydsl.entity.QTeam;
@@ -563,14 +564,14 @@ public class QuerydslBasicTest {
 
   @Test
   public void findDtoByConstructor() {
-    List<MemberDto> result = queryFactory
-        .select(Projections.constructor(MemberDto.class
-            , member.username, member.age)) // 타입 순서가 맞아야 함(생성자)
+    List<UserDto> result = queryFactory
+        .select(Projections.constructor(UserDto.class
+            , member.username.as("name"), member.age)) // 타입 순서가 맞아야 함(생성자)
         .from(member)
         .fetch();
 
-    for (MemberDto memberDto : result) {
-      System.out.println("memberDto = " + memberDto);
+    for (UserDto userDto : result) {
+      System.out.println("userDto = " + userDto);
     }
   }
 }
