@@ -641,16 +641,10 @@ public class QuerydslBasicTest {
   }
 
   private Predicate usernameEq(String usernameCond) {
-    if (usernameCond == null) {
-      return null;
-    }
-    return member.username.eq(usernameCond);
+    return usernameCond != null ? member.username.eq(usernameCond) : null;
   }
 
   private Predicate ageEq(Integer ageCond) {
-    if (ageCond == null) {
-      return null;
-    }
-    return member.age.eq(ageCond);
+    return ageCond != null ? member.age.eq(ageCond) : null;
   }
 }
