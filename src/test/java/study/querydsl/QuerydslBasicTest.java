@@ -637,7 +637,6 @@ public class QuerydslBasicTest {
   private List<Member> searchMember2(String usernameCond, Integer ageCond) {
     return queryFactory
         .selectFrom(member)
-        //.where(usernameEq(usernameCond), ageEq(ageCond))
         .where(allEq(usernameCond, ageCond))
         .fetch();
   }
