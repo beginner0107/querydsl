@@ -547,4 +547,17 @@ public class QuerydslBasicTest {
       System.out.println("memberDto = " + memberDto);
     }
   }
+
+  @Test
+  public void findDtoByField() { // getter setter가 없어도 됨, 필드에다 값을 넣어줌
+    List<MemberDto> result = queryFactory
+        .select(Projections.fields(MemberDto.class
+            , member.username, member.age))
+        .from(member)
+        .fetch();
+
+    for (MemberDto memberDto : result) {
+      System.out.println("memberDto = " + memberDto);
+    }
+  }
 }
