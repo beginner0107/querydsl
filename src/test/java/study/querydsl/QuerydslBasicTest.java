@@ -560,4 +560,17 @@ public class QuerydslBasicTest {
       System.out.println("memberDto = " + memberDto);
     }
   }
+
+  @Test
+  public void findDtoByConstructor() {
+    List<MemberDto> result = queryFactory
+        .select(Projections.constructor(MemberDto.class
+            , member.username, member.age)) // 타입 순서가 맞아야 함(생성자)
+        .from(member)
+        .fetch();
+
+    for (MemberDto memberDto : result) {
+      System.out.println("memberDto = " + memberDto);
+    }
+  }
 }
