@@ -38,6 +38,7 @@ out/
 
 ### yml ###
 src/main/resources/**
+src/test/resources/**
 
 ### Gradle ###
 **/build/
