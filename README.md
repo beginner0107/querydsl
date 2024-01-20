@@ -345,19 +345,6 @@ List<MemberDto> result = queryFactory
 </div>
 </details>
 <details>
-<summary>JPQL DTO 프로젝션</summary>
-<div markdown="11">
-
-```java
-List<MemberDto> result = em.createQuery
-        ("select new study.querydsl.dto.MemberDto(m.username, m.age) from Member m",
-            MemberDto.class)
-    .getResultList();
-```
-
-</div>
-</details>
-<details>
 <summary>Querydsl 필드 프로젝션</summary>
 <div markdown="12">
 
